@@ -2,7 +2,7 @@
 class Manager extends CI_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->model("staff_model");
+        $this->load->model(array('staff_model','admin_model'));
         $this->user = $this->staff_model->getLoggedUserDetails();
         if ($this->user == false){
             redirect("/");
@@ -13,8 +13,14 @@ class Manager extends CI_Controller{
         }
         $this->load->model("manager_model");
     }
+    public function getSummary(){
+        $this->output->set_content_type('application/json');
+        $sum = $this->admin_model->getFullSummary();
+        $this->output->set_output(json_encode($sum));
+    }
     public function index(){
         $data["user"] = $this->staff_model->getLoggedUserDetails();
+        $data['sum'] = $this->admin_model->getFullSummary();
         $data["main_content"] = "manager/home_view";
         $this->load->view("partials/manager/template",$data);
     }
@@ -46,7 +52,10 @@ class Manager extends CI_Controller{
         }
     }
     public function members($message=null,$type=null){
+        $this->load->model('user_model');
+        $data['mems'] = $this->user_model->getAllMembers();
         $data["members"] = $this->manager_model->getNewMembers();
+
         $data["type"] = $type;
         $data["message"] = $message;
         $data["main_content"] = "manager/members_view";
@@ -119,11 +128,27 @@ class Manager extends CI_Controller{
         }
     }
     public function payments(){
+        $this->load->model("loan_model");
+        $data['loans'] = $this->loan_model->getApprovedLoans();
         $data["main_content"] = "manager/payments_view";
         $this->load->view("partials/manager/template",$data);
     }
-    public function loan_details(){
-        $data["main_content"] = "manager/loanDetails_view";
-        $this->load->view("partials/manager/template",$data);
+    public function loan_details($id = null){
+        if ($id != null){
+            $this->load->model('loan_model');
+            $result = $this->loan_model->getFullLoanDetails($id);
+
+            if (count($result) > 0){
+                $data['details'] = $result['details'];
+                $data['payments'] = $result['payment'];
+                $data["main_content"] = "manager/loanDetails_view";
+                $this->load->view("partials/manager/template",$data);
+            }else{
+                $this->payments();
+            }
+            
+        }else{
+            $this->payments();
+        }
     }
 }

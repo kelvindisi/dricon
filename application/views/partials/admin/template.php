@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>public/animate.css/animate.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>public/css/common.css">
     <link rel="stylesheet" href="<?= base_url(); ?>public/css/admin.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>public/datatables/media/css/dataTables.bootstrap4.css">
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark navbar-expand-md mb-4">
@@ -50,5 +51,12 @@
     </div>
 <script src="<?= base_url(); ?>public/jquery/dist/jquery.min.js"></script>
 <script src="<?= base_url(); ?>public/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?= base_url(); ?>public/dataTables/media/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>public/dataTables/media/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".dt_table").dataTable();
+    });
+</script>
 </body>
 </html>

@@ -24,7 +24,7 @@
                         <a href="<?= base_url() ?>index.php/accounts/members" class="nav-link">MEMBERS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url() ?>index.php/accounts/penalties" class="nav-link">PENALTIES</a>
+                        <a href="<?= base_url() ?>index.php/accounts/payments" class="nav-link">PAYMENTS</a>
                     </li>
                     <li class="nav-item">
                         <a href="<?= base_url() ?>index.php/accounts/loan" class="nav-link">LOAN</a>

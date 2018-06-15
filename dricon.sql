@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2018 at 07:25 PM
+-- Generation Time: Jun 15, 2018 at 10:14 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -42,16 +42,6 @@ CREATE TABLE `tbl_loan` (
   `state` enum('cleared','unpaid') NOT NULL DEFAULT 'unpaid'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_loan`
---
-
-INSERT INTO `tbl_loan` (`id`, `user`, `loan_type`, `date_borrowed`, `amount_borrowed`, `interest`, `amount_to_pay`, `balance`, `status`, `withdrawn`, `state`) VALUES
-(1, 1, 1, '2018-04-16 10:39:21', 400, 1, 400, 0, 'approved', 'no', 'cleared'),
-(6, 1, 1, '2018-05-02 19:11:24', 400, 5, 420, 420, 'approved', 'no', 'unpaid'),
-(7, 1, 3, '2018-05-02 19:12:25', 400, 0, 400, 400, 'pending', 'no', 'unpaid'),
-(8, 1, 1, '2018-05-20 09:29:02', 200, 5, 210, 210, 'not approved', 'no', 'unpaid');
-
 -- --------------------------------------------------------
 
 --
@@ -64,22 +54,6 @@ CREATE TABLE `tbl_loanpayment` (
   `amount` int(11) NOT NULL,
   `loan_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_loanpayment`
---
-
-INSERT INTO `tbl_loanpayment` (`id`, `date_paid`, `amount`, `loan_id`) VALUES
-(1, '2018-05-02 21:14:03', 20, 1),
-(2, '2018-05-02 21:14:52', 20, 1),
-(3, '2018-05-02 21:15:34', 20, 1),
-(4, '2018-05-02 21:17:26', 20, 1),
-(5, '2018-05-02 21:17:39', 20, 1),
-(6, '2018-05-02 21:18:51', 20, 1),
-(7, '2018-05-02 21:19:39', 20, 1),
-(8, '2018-05-02 21:20:22', 20, 1),
-(9, '2018-05-02 21:21:28', 20, 1),
-(10, '2018-05-02 21:29:32', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -126,11 +100,8 @@ CREATE TABLE `tbl_staff` (
 --
 
 INSERT INTO `tbl_staff` (`id`, `username`, `first_name`, `last_name`, `userlevel`, `password`, `status`, `current_login`, `last_login`) VALUES
-(1, 'Kelvindisi', 'KELVIN', 'NDISI WAMBUA', 'Manager', '$2y$10$8vg5RwjYxJMkMmmZ.ung.OLzTJsE6nysf6c7uFsH4D6qNBHkSdpxW', 'active', '2018-05-24 18:10:35', '2018-05-24 11:22:13'),
-(2, 'angelamwende', 'MWENDE MUTWA', 'ANGELA', 'Admin', '$2y$10$izMJ07SLPjtTNa542CNNV.XooUsi1Xvg/GtPpZPfxW5QRTHv1XWoO', 'active', '2018-04-28 14:08:34', '0000-00-00 00:00:00'),
-(3, 'lindamise', 'MISE', 'LINDA', 'Admin', '$2y$10$h7VOZRIfnZpuSKKeG6QbIu3/e7tlto.vuyI8Rjv9Gxto6nkmeJjhK', 'active', '2018-05-20 08:31:22', '0000-00-00 00:00:00'),
-(4, 'sean', 'KINYUTI', 'SEAN', 'Accounts', '$2y$10$8yM78uCcwCSO9O4x8VbBT.JF1sR9bRAgChTXvTxNHjxwYaZf/4ThK', 'active', '2018-05-20 08:27:29', '2018-05-02 17:47:43'),
-(5, 'abigaelndisi', 'Arunga', 'Abigael', 'Manager', '$2y$10$kDfaYj9rYu5nIup9aIyvCe68zYzstZb2.19gMAofxAHXOekrPP/CS', 'active', NULL, '2018-04-12 08:16:01');
+(1, 'admin', 'Admin', 'Marsha', 'Admin', '$2y$10$izMJ07SLPjtTNa542CNNV.XooUsi1Xvg/GtPpZPfxW5QRTHv1XWoO', 'active', '2018-06-15 07:11:44', '0000-00-00 00:00:00'),
+(2, 'masha', 'Manager', 'Marsha', 'Manager', '$2y$10$Mb/lE.E/A949StJCFR8D3.IOqfr8bs86TBiQTr1Mgw0jUxcac0I.G', 'active', '2018-06-15 07:12:25', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -149,14 +120,6 @@ CREATE TABLE `tbl_users` (
   `status` enum('active','pending','','') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_users`
---
-
-INSERT INTO `tbl_users` (`id`, `first_name`, `last_name`, `gender`, `marital_status`, `occupation`, `id_number`, `status`) VALUES
-(1, 'Kelvin', 'Ndisi', 'male', 'single', 'Engineer', 20172018, 'active'),
-(2, 'Kelvin', 'Ndisi Wambua', 'male', 'single', 'Engineer', 32155353, 'active');
-
 -- --------------------------------------------------------
 
 --
@@ -174,13 +137,6 @@ CREATE TABLE `tbl_usersedit` (
   `id_number` int(11) NOT NULL,
   `status` enum('active','pending','','') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_usersedit`
---
-
-INSERT INTO `tbl_usersedit` (`id`, `user_id`, `first_name`, `last_name`, `gender`, `marital_status`, `occupation`, `id_number`, `status`) VALUES
-(1, 1, 'Kelvin', 'Ndisi', 'male', 'married', 'Engineer', 246515235, 'pending');
 
 --
 -- Indexes for dumped tables
@@ -235,13 +191,13 @@ ALTER TABLE `tbl_usersedit`
 -- AUTO_INCREMENT for table `tbl_loan`
 --
 ALTER TABLE `tbl_loan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_loanpayment`
 --
 ALTER TABLE `tbl_loanpayment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_loantype`
@@ -253,19 +209,19 @@ ALTER TABLE `tbl_loantype`
 -- AUTO_INCREMENT for table `tbl_staff`
 --
 ALTER TABLE `tbl_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_usersedit`
 --
 ALTER TABLE `tbl_usersedit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

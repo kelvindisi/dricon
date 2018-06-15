@@ -41,8 +41,8 @@
                 <div class="card-body">
                     <div class="card-title bg-dark">MEMBERS</div>
                     <div class="card-text">
-                        <p>New Members <span class="badge badge-danger">10</span></p>
-                        <p>Total Members <span class="badge badge-warning">10</span></p>
+                        <p>New Members <span class="badge badge-danger"><?= $sum['new_members']; ?></span></p>
+                        <p>Total Members <span class="badge badge-warning"><?= $sum['all_members']; ?></span></p>
                     </div>
                 </div>
             </div>
@@ -50,8 +50,7 @@
                 <div class="card-body">
                     <div class="card-title bg-dark">LOANS</div>
                     <div class="card-text">
-                        <p>New Applications <span class="badge badge-danger">10</span></p>
-                        <p>Applications Changes<span class="badge badge-danger">10</span></p>
+                        <p>New Applications <span class="badge badge-danger"><?= $sum['pending']; ?></span></p>
                     </div>
                 </div>
             </div>
@@ -60,7 +59,7 @@
             <div class="card-body">
                 <div class="card-title">APPLICATIONS SUMMARY</div><hr>
                 <div class="card-text">
-                    <canvas id="barApplicationSummary"></canvas>
+                    <canvas id="applications"></canvas>
                 </div>
             </div>
         </div>

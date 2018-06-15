@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>public/animate.css/animate.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>public/css/common.css">
     <link rel="stylesheet" href="<?= base_url(); ?>public/css/manager.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>public/datatables/media/css/dataTables.bootstrap4.css">
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-danger navbar-expand-md mb-4">
@@ -50,5 +51,35 @@
     </div>
 <script src="<?= base_url(); ?>public/jquery/dist/jquery.min.js"></script>
 <script src="<?= base_url(); ?>public/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?= base_url(); ?>public/dataTables/media/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>public/dataTables/media/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url(); ?>public/Chart.js/dist/Chart.bundle.min.js"></script>
+<script src="<?= base_url(); ?>public/Chart.js/dist/Chart.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".dt_table").dataTable();
+        $.get('http://localhost/dricon/index.php/manager/getSummary/',function(res){
+            var app = document.getElementById('applications');
+
+            if (app != null){
+                var myAppBar = new Chart(app.getContext('2d'),{
+                    type: 'pie',
+                    data: {
+                        labels: ['Pending','Approved','Not Approved'],
+                        datasets: [{
+                            label: 'Application processing Summary',
+                            data: [res.pending,res.approved,res.not_approved],
+                            backgroundColor: [
+                                'rgba(250,50,10,40)',
+                                'rgba(250,80,200,40)',
+                                'rgba(150,100,100,40)'
+                            ]
+                        }]
+                    }
+                })
+            }
+        });//end of get fun
+    });
+</script>
 </body>
 </html>

@@ -16,6 +16,12 @@ class User_model extends CI_Model{
             "id" => $_id
         ))->row_array();
     }
+    public function newMembers(){
+        return $this->db->get_where('tbl_users',array('status'=>'pending'))->num_rows();
+    }
+    public function allMembers(){
+        return $this->db->get_where('tbl_users',array('status'=>'active'))->num_rows();
+    }
     public function updateMemberById($id,$data){
         $_id = $this->db->escape_str($id);
         $sql = "SELECT `status` FROM `tbl_users` WHERE `id` = $_id";
@@ -46,4 +52,7 @@ class User_model extends CI_Model{
             "id_number" => $_id
         ))->row_array();
     }
+    /*public function getAllMembers(){
+        return $this->db->get('tbl_users')->result_array();
+    }*/
 }

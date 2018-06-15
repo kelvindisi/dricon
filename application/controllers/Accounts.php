@@ -13,6 +13,10 @@ class  Accounts extends CI_Controller{
         }
     }
     public function index(){
+        $this->load->model('loan_model');
+        $summary = $this->loan_model->getFullSummary();
+        
+        $data['summary'] = $summary;
         $data["user"] = $this->staff_model->getLoggedUserDetails();
         $data["main_content"] = "accounts/home_view";
         $this->load->view("partials/accounts/template",$data);
@@ -200,9 +204,30 @@ class  Accounts extends CI_Controller{
             }
         }
     }
-    public function penalties(){
-        $data["main_content"] = "accounts/penalties_view";
+    public function payments(){
+        $this->load->model("loan_model");
+        $data['loans'] = $this->loan_model->getApprovedLoans();
+
+        $data["main_content"] = "accounts/payment_view";
         $this->load->view("partials/accounts/template",$data);
+    }
+    public function loan_details($id = null){
+        if ($id != null){
+            $this->load->model('loan_model');
+            $result = $this->loan_model->getFullLoanDetails($id);
+
+            if (count($result) > 0){
+                $data['details'] = $result['details'];
+                $data['payments'] = $result['payment'];
+                $data["main_content"] = "accounts/loanDetails_view";
+                $this->load->view("partials/accounts/template",$data);
+            }else{
+                $this->payments();
+            }
+            
+        }else{
+            $this->payments();
+        }
     }
     public function loan(){
         $this->load->model("loan_model");

@@ -38,18 +38,33 @@
     <div class="col-sm-12 col-md-8">
         <div class="card">
             <div class="card-body">
-                <div class="card-title">
+                <div class="card-title text-center">
                     SUMMARY
                 </div>
                 <div class="card-text">
                     <div class="members">
-
+                        <h5>MEMBERS DETAILS</h5>
+                        <hr>
+                        <p>TOTAL ACTIVE MEMBERS: <span class="text-muted"><?= $summary['members'] ?></span></p>
                     </div>
-                    <div class="penalties">
-
+                    <div class="loans">
+                        <h5>LOAN DETAILS</h5>
+                        <hr>
+                        <p><span class="text-muted">TYPES OF LOAN :</span> <?= $summary['loan_type'] ?></p>
+                        <p><span class="text-muted">PENDING LOANS :</span> <?= $summary['pending'] ?></p>
+                        <p><span class="text-muted">APPROVED LOANS :</span> <?= $summary['approved'] ?></p>
+                        <p><span class="text-muted">NOT APPROVED LOANS :</span> <?= $summary['not_approved'] ?></p>
                     </div>
-                    <div class="loan">
-
+                    <div class="payment">
+                        <h5>APPROVED LOAN PAYMENT</h5>
+                        <p>
+                            <span class="text-muted">UN-CLEARED LOANS:</span>
+                            <?= $summary['unpaid']; ?>
+                        </p>
+                        <p>
+                            <span class="text-muted">CLEARED LOANS:</span>
+                            <?= $summary['paid']; ?>
+                        </p>
                     </div>
                 </div>
             </div>

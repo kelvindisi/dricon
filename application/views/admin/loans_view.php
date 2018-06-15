@@ -29,7 +29,7 @@
         <div class="card animated slideInRight">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover dt_table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>

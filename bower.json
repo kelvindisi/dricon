@@ -1,0 +1,14 @@
+{
+  "name": "dricon",
+  "homepage": "https://github.com/kelvindisi/dricon",
+  "authors": [
+    "Kelvin Ndisi <kelvindisi@gmail.com>"
+  ],
+  "description": "",
+  "main": "index",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chart.js": "^2.7.2"
+  }
+}

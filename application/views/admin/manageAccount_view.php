@@ -1,7 +1,7 @@
 <div class="card animated slideInDown mt-3">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover dt_table">
                 <thead>
                     <tr>
                         <th width="30%">USERNAME</th>
